@@ -1,0 +1,93 @@
+#N canvas 59 68 575 532 10;
+#X obj 207 28 bng 15 250 50 0 empty empty empty 0 -6 0 10 -262144 -1
+-1;
+#X obj 105 26 bng 15 250 50 0 empty empty empty 0 -6 0 10 -262144 -1
+-1;
+#X obj 140 123 vsl 8 50 2 5000 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 813 0;
+#X obj 152 123 vsl 8 50 2 5000 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 3800 0;
+#X obj 164 123 vsl 8 50 0 1 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 0;
+#X obj 176 123 vsl 8 50 2 5000 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1300 0;
+#X floatatom 119 188 5 0 0 0 - - -;
+#X obj 209 247 pack 0 100;
+#X floatatom 173 213 5 0 0 0 - - -;
+#X obj 144 87 delay 100;
+#X msg 65 188 1;
+#X floatatom 134 213 5 0 0 0 - - -;
+#X floatatom 157 188 5 0 0 0 - - -;
+#X obj 105 4 inlet;
+#X obj 207 4 inlet;
+#X obj 145 430 outlet~;
+#X msg 156 62 stop;
+#X text 139 120 A D S R;
+#X text 101 -14 Trigger;
+#X text 205 -14 Release;
+#X obj 65 247 pack 1 5;
+#X obj 129 247 pack 0.5 100;
+#X text 211 43 Cancel decay/sustain if release occurs before attack
+is finished;
+#X text 214 87 Trigger the decay after attack is complete;
+#X text 4 -50 ADSR Envelope Generator;
+#X text -5 460 2010-02-08 Dan Ellis dpwe@ee.columbia.edu;
+#X text 15 229 Attack segment;
+#X text 106 265 Decay to sustain level;
+#X text 218 229 Release to zero;
+#X text 199 355 Generate linear segments;
+#X text 200 368 based on parameter messages;
+#X obj 145 294 unpack;
+#X obj 145 361 line~;
+#X obj 145 316 sqrt;
+#X obj 145 339 sqrt;
+#X obj 145 382 *~;
+#X obj 145 406 *~;
+#X text 201 315 Map to x^.25 domain;
+#X text 200 395 Expand back to original domain;
+#X text 201 327 so linear segments look more exponential;
+#X text 304 156 Control parameters;
+#X text 305 170 via global signals;
+#X obj 259 134 r \$1-A;
+#X obj 259 153 r \$1-D;
+#X obj 259 172 r \$1-S;
+#X obj 259 191 r \$1-R;
+#X text 7 -32 Now uses \$1 creation arg to differentiate individual
+instances.;
+#X connect 0 0 7 0;
+#X connect 0 0 16 0;
+#X connect 1 0 2 0;
+#X connect 1 0 9 0;
+#X connect 1 0 10 0;
+#X connect 2 0 6 0;
+#X connect 2 0 9 1;
+#X connect 2 0 20 1;
+#X connect 3 0 11 0;
+#X connect 3 0 21 1;
+#X connect 4 0 12 0;
+#X connect 4 0 21 0;
+#X connect 5 0 7 1;
+#X connect 5 0 8 0;
+#X connect 7 0 31 0;
+#X connect 9 0 3 0;
+#X connect 9 0 4 0;
+#X connect 10 0 20 0;
+#X connect 13 0 1 0;
+#X connect 14 0 0 0;
+#X connect 16 0 9 0;
+#X connect 20 0 31 0;
+#X connect 21 0 31 0;
+#X connect 31 0 33 0;
+#X connect 31 1 32 1;
+#X connect 32 0 35 0;
+#X connect 32 0 35 1;
+#X connect 33 0 34 0;
+#X connect 34 0 32 0;
+#X connect 35 0 36 0;
+#X connect 35 0 36 1;
+#X connect 36 0 15 0;
+#X connect 42 0 2 0;
+#X connect 43 0 3 0;
+#X connect 44 0 4 0;
+#X connect 45 0 5 0;
+#X coords 0 -1 1 1 85 60 1 100 118;
